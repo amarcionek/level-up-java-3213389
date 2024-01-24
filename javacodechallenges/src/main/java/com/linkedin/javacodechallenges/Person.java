@@ -1,3 +1,34 @@
-public class Person {
-  
+package com.linkedin.javacodechallenges;
+
+public class Person extends Greeting {
+
+  private String firstName;
+
+  private String lastName;
+
+  public Person(String firstName, String lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  @Override
+  public String getName() {
+    return getFirstName() + " " + getLastName();
+  }
 }
