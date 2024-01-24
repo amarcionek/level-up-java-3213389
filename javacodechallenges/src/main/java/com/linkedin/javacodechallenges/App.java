@@ -2,6 +2,7 @@ package com.linkedin.javacodechallenges;
 
 import java.util.Map;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class App {
     public static final Map<Character, Integer> letterPoints = Map.ofEntries(Map.entry('A', 1),
@@ -14,7 +15,33 @@ public class App {
             Map.entry('Z', 10));
 
     public static int wordScoreCalculator(String word) {
-        return 0;
+
+        /*
+         * naive
+         * int totalPoints = 0;
+         * for (int i = 0; i < word.length(); i++) {
+         * char ch = word.charAt(i);
+         * if (!letterPoints.containsKey(Character.toUpperCase(ch)))
+         * continue;
+         * 
+         * totalPoints += letterPoints.get(Character.toUpperCase(ch));
+         * }
+         * 
+         * return totalPoints;
+         */
+
+        String normalized = word.toUpperCase();
+        AtomicInteger score = new AtomicInteger();
+        normalized.chars().filter(Character::isAlphabetic)
+                .mapToObj(n -> (char) n)
+                .forEachOrdered(letter -> {
+                    if (letterPoints.containsKey(letter)) {
+                        score.getAndAdd(letterPoints.get(letter));
+                    } else {
+                        System.out.println("Char not in map" + letter);
+                    }
+                });
+        return score.get();
     }
 
     public static void main(String[] args) {

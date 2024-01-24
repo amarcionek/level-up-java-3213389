@@ -31,7 +31,6 @@ public class AppTest {
         assertEquals(10, App.wordScoreCalculator("VeRy"));
         assertEquals(10, App.wordScoreCalculator("VERY"));
         assertEquals(10, App.wordScoreCalculator("ver!y"));
-        assertEquals(10, App.wordScoreCalculator("ver!y"));
         assertEquals(10, App.wordScoreCalculator("  ve ry"));
         assertEquals(10, App.wordScoreCalculator("  ve ry"));
         assertEquals(7, App.wordScoreCalculator("dadd"));
